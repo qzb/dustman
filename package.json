@@ -1,9 +1,20 @@
 {
-  "name": "dustman",
-  "title": "dustman",
-  "id": "jid1-i37bkuPx3kABMw",
-  "description": "Autocloses unused tabs",
-  "author": "Józef Sokołowski <j.k.sokolowski@gmail.com>",
-  "license": "MIT",
-  "version": "0.1"
+    "name": "dustman",
+    "title": "dustman",
+    "id": "jid1-i37bkuPx3kABMw",
+    "description": "Autocloses unused tabs",
+    "author": "Józef Sokołowski <j.k.sokolowski@gmail.com>",
+    "license": "MIT",
+    "version": "0.1",
+    "preferences": [{
+        "name": "maxInactivityTime",
+        "title": "Close inactive tabs after (minutes)",
+        "type": "integer",
+        "value": 20
+    }, {
+        "name": "minTabsCount",
+        "title": "Minimum tabs number",
+        "type": "integer",
+        "value": 5
+    }]
 }
