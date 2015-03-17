@@ -2,10 +2,10 @@
     "name": "dustman",
     "title": "dustman",
     "id": "jid1-i37bkuPx3kABMw",
-    "description": "Autocloses unused tabs",
+    "description": "Auto-closes unused tabs",
     "author": "Józef Sokołowski <j.k.sokolowski@gmail.com>",
     "license": "MIT",
-    "version": "0.1",
+    "version": "1.0.0",
     "preferences": [{
         "name": "maxInactivityTime",
         "title": "Close inactive tabs after (minutes)",

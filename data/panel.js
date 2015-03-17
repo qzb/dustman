@@ -26,3 +26,16 @@ function addLink({ url, title, favicon }) {
 }
 
 self.port.on('tab-close', addLink);
+
+
+document.querySelector('.button').onclick = function (evt) {
+    var classList = document.querySelector('.button').classList;
+
+    if (classList.contains('paused')) {
+        classList.remove('paused');
+        self.port.emit('resume');
+    } else {
+        classList.add('paused');
+        self.port.emit('pause');
+    }
+};
