@@ -13,8 +13,13 @@
         "value": 20
     }, {
         "name": "minTabsCount",
-        "title": "Minimum tabs number",
+        "title": "Minimum number of tabs",
         "type": "integer",
         "value": 5
+    }, {
+        "name": "maxHistorySize",
+        "title": "Number of closed tabs showed in panel",
+        "type": "integer",
+        "value": 100
     }]
 }

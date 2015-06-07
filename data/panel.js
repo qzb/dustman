@@ -1,9 +1,21 @@
-var urls = [];
+/* global self, document */
 
-function addLink({ url, title, favicon }) {
+var links = {};
+
+function removeLink ({ url }) {
+    if (links[url]) {
+        links[url].remove();
+        delete links[url];
+        self.port.emit('link-removed', { url });
+    }
+}
+
+function addLink ({ url, title, favicon }) {
     if (url === 'about:blank' || url === 'about:newtab') {
         return;
     }
+
+    removeLink({ url });
 
     var section = document.querySelector('section.recently-closed');
     var link = document.createElement('a');
@@ -18,24 +30,26 @@ function addLink({ url, title, favicon }) {
     link.href = url;
     link.target = '_blank';
     link.appendChild(text);
-    link.onclick = function (ev) {
-        ev.target.remove();
-    };
+    link.onclick = () => removeLink({ url });
 
+    links[url] = link;
     section.insertBefore(link, section.firstChild);
+    self.port.emit('link-added', { url, title, favicon });
 }
 
-self.port.on('tab-close', addLink);
-
-
-document.querySelector('.button').onclick = function (evt) {
+function togglePause () {
     var classList = document.querySelector('.button').classList;
 
     if (classList.contains('paused')) {
         classList.remove('paused');
-        self.port.emit('resume');
+        self.port.emit('resume-clicked');
     } else {
         classList.add('paused');
-        self.port.emit('pause');
+        self.port.emit('pause-clicked');
     }
-};
+}
+
+// Handle events
+self.port.on('add-link', addLink);
+self.port.on('remove-link', removeLink);
+document.querySelector('.button').onclick = togglePause;
