@@ -6,7 +6,7 @@
     "author": "Józef Sokołowski",
     "homepage": "https://github.com/qzb/dustman",
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "preferences": [{
         "name": "maxInactivityTime",
         "title": "Close inactive tabs after (minutes)",
