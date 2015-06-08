@@ -1,0 +1,78 @@
+.recently-closed {
+    bottom: 41px;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 4px;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
+
+.recently-closed:empty::before {
+    color: #999;
+    content: attr(placeholder);
+    display: block;
+    font-style: italic;
+    margin-top: 8px;
+    text-align: center;
+    width: 100%;
+}
+
+.recently-closed a {
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    color: #444;
+    display: block;
+    float: left;
+    height: 26px;
+    line-height: 16px;
+    margin-bottom: 0.25em;
+    overflow: hidden;
+    padding: 4px;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+.recently-closed a:hover {
+    background-color: #ddd;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+.recently-closed a img {
+    float: left;
+    height: 16px;
+    margin-right: 8px;
+    width: 16px;
+}
+
+.button {
+    background-color: #e9e9e9;
+    border: none;
+    border-top: 1px solid #ccc;
+    bottom: 0;
+    cursor: pointer;
+    font-size: 15px;
+    height: 45px;
+    left:0;
+    line-height: 45px;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.button:hover {
+    background-color: #ddd;
+}
+
+.button.paused .pause {
+    display: none;
+}
+
+.button:not(.paused) .resume {
+    display: none;
+}
