@@ -22,13 +22,11 @@ function addLink ({ url, title, favicon }) {
     var text = document.createTextNode(title);
     var icon = document.createElement('img');
 
-    if (favicon) {
-        icon.src = favicon;
-        link.appendChild(icon);
-    }
+    icon.src = favicon || 'default-favicon.png';
 
     link.href = url;
     link.target = '_blank';
+    link.appendChild(icon);
     link.appendChild(text);
     link.onclick = () => removeLink({ url });
 
