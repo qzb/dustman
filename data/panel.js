@@ -1,6 +1,4 @@
-/* global self, document */
-
-var links = {};
+const links = {};
 
 function removeLink ({ url }) {
     if (links[url]) {
@@ -17,10 +15,10 @@ function addLink ({ url, title, favicon }) {
 
     removeLink({ url });
 
-    var section = document.querySelector('section.recently-closed');
-    var link = document.createElement('a');
-    var text = document.createTextNode(title);
-    var icon = document.createElement('img');
+    const section = document.querySelector('section.recently-closed');
+    const link = document.createElement('a');
+    const text = document.createTextNode(title);
+    const icon = document.createElement('img');
 
     icon.src = favicon || 'default-favicon.png';
 
@@ -36,7 +34,7 @@ function addLink ({ url, title, favicon }) {
 }
 
 function togglePause () {
-    var classList = document.querySelector('.button').classList;
+    const classList = document.querySelector('.button').classList;
 
     if (classList.contains('paused')) {
         classList.remove('paused');
@@ -48,6 +46,7 @@ function togglePause () {
 }
 
 // Handle events
+
 self.port.on('add-link', addLink);
 self.port.on('remove-link', removeLink);
 document.querySelector('.button').onclick = togglePause;
