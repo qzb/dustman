@@ -1,4 +1,5 @@
 /* global self */
+
 'use strict'
 
 const links = {}
@@ -20,19 +21,16 @@ function addLink ({ url, title, favicon }) {
 
   const section = document.querySelector('section.recently-closed')
   const link = document.createElement('a')
-  const text = document.createTextNode(title)
-  const icon = document.createElement('img')
 
-  icon.src = favicon || 'default-favicon.png'
+  link.innerHTML = `<img src="${favicon || 'default-favicon.png'}">${title}`
+  link.onclick = () => {
+    self.port.emit('link-clicked', url)
+    removeLink({ url })
+  }
 
-  link.href = url
-  link.target = '_blank'
-  link.appendChild(icon)
-  link.appendChild(text)
-  link.onclick = () => removeLink({ url })
+  section.insertBefore(link, section.firstChild)
 
   links[url] = link
-  section.insertBefore(link, section.firstChild)
   self.port.emit('link-added', { url, title, favicon })
 }
 
