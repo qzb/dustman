@@ -1,28 +1,33 @@
 {
-    "name": "dustman",
-    "title": "Dustman",
-    "id": "jid1-i37bkuPx3kABMw@jetpack",
-    "description": "Auto-closes unused tabs",
-    "author": "Józef Sokołowski",
-    "homepage": "https://github.com/qzb/dustman",
-    "license": "MIT",
-    "version": "1.1.0",
-    "main": "./lib/main.js",
+  "name": "dustman",
+  "title": "Dustman",
+  "id": "jid1-i37bkuPx3kABMw@jetpack",
+  "description": "Auto-closes unused tabs",
+  "author": "Józef Sokołowski",
+  "homepage": "https://github.com/qzb/dustman",
+  "license": "MIT",
+  "version": "1.1.0",
+  "main": "./lib/main.js",
 
-    "preferences": [{
-        "name": "maxInactivityTime",
-        "title": "Close inactive tabs after (minutes)",
-        "type": "integer",
-        "value": 20
-    }, {
-        "name": "minTabsCount",
-        "title": "Minimum number of tabs",
-        "type": "integer",
-        "value": 5
-    }, {
-        "name": "maxHistorySize",
-        "title": "Number of closed tabs showed in panel",
-        "type": "integer",
-        "value": 100
-    }]
+  "preferences": [{
+    "name": "maxInactivityTime",
+    "title": "Close inactive tabs after (minutes)",
+    "type": "integer",
+    "value": 20
+  }, {
+    "name": "minTabsCount",
+    "title": "Minimum number of tabs",
+    "type": "integer",
+    "value": 5
+  }, {
+    "name": "maxHistorySize",
+    "title": "Number of closed tabs showed in panel",
+    "type": "integer",
+    "value": 100
+  }, {
+    "name": "lockUnseenTabs",
+    "title": "Don't close tabs which wasn't viewed yet",
+    "type": "bool",
+    "value": true
+  }]
 }

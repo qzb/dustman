@@ -23,6 +23,7 @@
     border: 1px solid transparent;
     box-sizing: border-box;
     color: #444;
+    cursor: pointer;
     display: block;
     float: left;
     height: 26px;
