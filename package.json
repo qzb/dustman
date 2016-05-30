@@ -26,7 +26,7 @@
     "value": 100
   }, {
     "name": "lockUnseenTabs",
-    "title": "Don't close tabs which wasn't viewed yet",
+    "title": "Don't close tabs which weren't viewed yet",
     "type": "bool",
     "value": true
   }]
