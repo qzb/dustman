@@ -11,12 +11,14 @@
 
   "preferences": [{
     "name": "maxInactivityTime",
-    "title": "Close inactive tabs after (minutes)",
+    "title": "Minimum inactivity time (minutes)",
+    "description": "Dustman closes only those tabs which haven't been active for specified period of time.",
     "type": "integer",
     "value": 20
   }, {
     "name": "minTabsCount",
-    "title": "Minimum number of tabs",
+    "title": "Minimum number of tabs per window",
+    "description": "When window has less tabs than this value, Dustman will not close them. Pinned and unseen tabs (if enabled) are not counted in this limit.",
     "type": "integer",
     "value": 5
   }, {
@@ -26,7 +28,7 @@
     "value": 100
   }, {
     "name": "lockUnseenTabs",
-    "title": "Don't close tabs which weren't viewed yet",
+    "title": "Don't close tabs which were not viewed yet",
     "type": "bool",
     "value": true
   }]
