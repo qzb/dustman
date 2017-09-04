@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 /**
   @typedef Settings
@@ -11,8 +11,8 @@
 const defaultSettings = {
   minInactiveMilliseconds: 10 * 60 * 1000, // 10 minutes
   minTabsCount: 3,
-  maxHistorySize: 100,
-};
+  maxHistorySize: 100
+}
 
 /**
  * @typedef ClosedPageInfo
@@ -38,8 +38,8 @@ const defaultSettings = {
  * @return {Promise.<Settings>}
  */
 function loadSettings () {
-  return browser.storage.local.get("settings").then(s =>
-    s.settings || defaultSettings, err => defaultSettings);
+  return browser.storage.local.get('settings').then(s =>
+    s.settings || defaultSettings, err => defaultSettings)
 }
 
 /**
@@ -47,7 +47,7 @@ function loadSettings () {
  * @return {Promise.<()>}
  */
 function saveSettings (s) {
-  return browser.storage.local.set({settings : s});
+  return browser.storage.local.set({settings: s})
 }
 
 /**
@@ -62,5 +62,5 @@ function initialState () {
     closedPages: [],
     lastAccessed: new Map(),
     activeTabs: new Map()
-  }));
+  }))
 }

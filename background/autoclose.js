@@ -1,4 +1,4 @@
-"use strict";
+'use strict'
 
 /**
   @typedef TabInfo
@@ -25,66 +25,67 @@
  * @param {Array.<browser.tabs.Tab>} tabs
  * @return {CloseInfo}
  */
-function tabsToClose(now, settings, tabs) {
-  const windowIds = Array.from(new Set(tabs.map(tab => tab.windowId)));
-  const tabsByWindow = windowIds.map(windowId => tabs.filter(tab => tab.windowId == windowId));
+function tabsToClose (now, settings, tabs) {
+  const windowIds = Array.from(new Set(tabs.map(tab => tab.windowId)))
+  const tabsByWindow = windowIds.map(windowId => tabs.filter(tab => tab.windowId === windowId))
 
   const perWindowResults = tabsByWindow.map(tabs => {
-    const unpinnedTabs = tabs.filter(tab => !tab.pinned);
-    const numTabsToClose = unpinnedTabs.length - settings.minTabsCount;
+    const unpinnedTabs = tabs.filter(tab => !tab.pinned)
+    const numTabsToClose = unpinnedTabs.length - settings.minTabsCount
     if (numTabsToClose <= 0) {
-      return {tabsToClose: [], nextCheck: Infinity};
+      return {tabsToClose: [], nextCheck: Infinity}
     }
 
     // closeable tabs (now or in the future), sorted from longest to shortest inactivity
     const closeableTabs =
-      unpinnedTabs.filter(tab => tab.audible === false && tab.lastAccessed < Infinity).
-      sort((t1, t2) => t1.lastAccessed > t2.lastAccessed);
-    
-    const nowCloseableTabs =
-      closeableTabs.filter(tab => tab.lastAccessed + settings.minInactiveMilliseconds < now);
-    const onlyLaterCloseableTabs =
-      closeableTabs.filter(tab => tab.lastAccessed + settings.minInactiveMilliseconds >= now);
+      unpinnedTabs.filter(tab => tab.audible === false && tab.lastAccessed < Infinity)
+      .sort((t1, t2) => t1.lastAccessed > t2.lastAccessed)
 
-    const tabsToClose = nowCloseableTabs.slice(0, numTabsToClose);
-    if (tabsToClose.length == numTabsToClose || onlyLaterCloseableTabs.length == 0) {
-      var nextCheck = Infinity;
+    const nowCloseableTabs =
+      closeableTabs.filter(tab => tab.lastAccessed + settings.minInactiveMilliseconds < now)
+    const onlyLaterCloseableTabs =
+      closeableTabs.filter(tab => tab.lastAccessed + settings.minInactiveMilliseconds >= now)
+
+    const tabsToClose = nowCloseableTabs.slice(0, numTabsToClose)
+    var nextCheck
+    if (tabsToClose.length === numTabsToClose || onlyLaterCloseableTabs.length === 0) {
+      nextCheck = Infinity
     } else {
-      var nextCheck = onlyLaterCloseableTabs[0].lastAccessed + settings.minInactiveMilliseconds;
+      nextCheck = onlyLaterCloseableTabs[0].lastAccessed + settings.minInactiveMilliseconds
     }
 
     return {tabsToClose, nextCheck}
-  });
+  })
 
   const tabsToClose =
-    Array.prototype.concat.apply([], perWindowResults.map(res => res.tabsToClose));
+    Array.prototype.concat.apply([], perWindowResults.map(res => res.tabsToClose))
 
   const nextCheck =
-    Math.min.apply(null, perWindowResults.map(res => res.nextCheck));
+    Math.min.apply(null, perWindowResults.map(res => res.nextCheck))
 
-  return {tabsToClose, nextCheck};
+  return {tabsToClose, nextCheck}
 }
 
-/** 
+/**
  * Whether a tab can be saved to the panel.
  * @param {browser.tabs.Tab} tab
  * @return {boolean}
  */
-function saveableTab(tab) {
+function saveableTab (tab) {
   if (!tab.title || !tab.url) {
-    return false;
+    return false
   }
 
-  const protocol = new URL(tab.url).protocol;
-  if (["chrome:", "javascript:", "data:", "file:", "about:"].indexOf(protocol) >= 0) {
-    return false;
+  const protocol = new URL(tab.url).protocol
+  if (['chrome:', 'javascript:', 'data:', 'file:', 'about:'].indexOf(protocol) >= 0) {
+    return false
   }
 
   if (tab.incognito) {
-    return false;
+    return false
   }
 
-  return true;
+  return true
 }
 
 /**
@@ -93,35 +94,35 @@ function saveableTab(tab) {
  * @param {State} state
  * @return {Promise.<()>}
  */
-function autoclose(state) {
-  clearTimeout(state.autocloseTimeoutId);
+function autoclose (state) {
+  clearTimeout(state.autocloseTimeoutId)
 
   if (state.paused) {
-    return Promise.resolve();
+    return Promise.resolve()
   }
 
-  return browser.tabs.query({windowType: "normal"}).then(tabs => {
-    const now = new Date().getTime();
+  return browser.tabs.query({windowType: 'normal'}).then(tabs => {
+    const now = new Date().getTime()
     for (const tab of tabs) {
-      tab.lastAccessed = state.lastAccessed.get(tab.id) || Infinity;
+      tab.lastAccessed = state.lastAccessed.get(tab.id) || Infinity
     }
-    const {tabsToClose: tabsToClose_, nextCheck} = tabsToClose(now, state.settings, tabs);
+    const {tabsToClose: tabsToClose_, nextCheck} = tabsToClose(now, state.settings, tabs)
 
-    if (nextCheck  < Infinity) {
+    if (nextCheck < Infinity) {
       // check again at nextCheck + some tolerance
-      state.autocloseTimeoutId = setTimeout(() => autoclose(state), nextCheck - now + 1000);
+      state.autocloseTimeoutId = setTimeout(() => autoclose(state), nextCheck - now + 1000)
     }
 
     const closedPages =
-      tabsToClose_.
-        filter(saveableTab).
-        map(tab => ({title: tab.title, url: tab.url, favIconUrl: tab.favIconUrl}));
+      tabsToClose_
+        .filter(saveableTab)
+        .map(tab => ({title: tab.title, url: tab.url, favIconUrl: tab.favIconUrl}))
     return browser.tabs.remove(tabsToClose_.map(tab => tab.id)).then(() => {
       state.closedPages =
-        closedPages.concat(state.closedPages).slice(0, state.settings.maxHistorySize);
-    });
-  });
+        closedPages.concat(state.closedPages).slice(0, state.settings.maxHistorySize)
+    })
+  })
 }
 
 // Make autoclose available via the window of the background page
-window.autoclose = autoclose;
+window.autoclose = autoclose
