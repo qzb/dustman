@@ -1,12 +1,7 @@
 .recently-closed {
-    bottom: 41px;
-    left: 0;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 4px;
-    position: fixed;
-    right: 0;
-    top: 0;
 }
 
 .recently-closed:empty::before {
@@ -15,6 +10,7 @@
     display: block;
     font-style: italic;
     margin-top: 8px;
+    margin-bottom: 8px;
     text-align: center;
     width: 100%;
 }
@@ -25,15 +21,14 @@
     color: #444;
     cursor: pointer;
     display: block;
-    float: left;
     height: 26px;
     line-height: 16px;
-    margin-bottom: 0.25em;
     overflow: hidden;
     padding: 4px;
     text-decoration: none;
     text-overflow: ellipsis;
     white-space: nowrap;
+    display: block;
     width: 100%;
 }
 
@@ -51,23 +46,27 @@
 }
 
 .button {
+    display: block;
+    cursor: pointer;
     background-color: #e9e9e9;
     border: none;
     border-top: 1px solid #ccc;
     bottom: 0;
-    cursor: pointer;
-    font-size: 15px;
-    height: 45px;
-    left:0;
-    line-height: 45px;
-    position: fixed;
-    right: 0;
     text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    white-space: nowrap;
     width: 100%;
+    min-width: 250px;
+    outline: none;
 }
 
 .button:hover {
     background-color: #ddd;
+}
+
+.button:active {
+    background-color: #ccc;
 }
 
 .button.paused .pause {

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link href="settings.css" rel="stylesheet">
+  </head>
+  <body>
+    <form>
+      <div class="form-group">
+        <label for="min-inactive-minutes" class="short-label">
+          Minimum background time (in minutes)
+        </label>
+        <input type="number" step="any" min="0" id="min-inactive-minutes" >
+        <label for="min-inactive-minutes" class="long-label">
+          Dustman only closes tabs which have been in the background for this long.
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label for="min-tabs-count" class="short-label">
+          Minimum number of tabs per window
+        </label>
+        <input type="number" min="0" id="min-tabs-count" >
+        <label for="min-tabs-count" class="long-label">
+          Dustman closes tabs only in windows that have more than this many tabs.
+          Pinned tabs are not counted towards this limit, and never auto-closed.
+          While Tabs that play sound (but not pinned) are counted towards this limit, they are also never auto-closed.
+        <label>
+      </div>
+
+      <div class="form-group">
+        <label for="max-history-size" class="short-label">
+          Number of closed tabs shown in the panel
+        </label>
+        <input type="number" min="0" id="max-history-size" >
+        <div>
+        <label for="max-history-size" class="long-label">
+          Dustman keeps a list of pages that were opened in the tabs it closes.
+          They can be accessed via the garbage bin button in the toolbar.
+          This option controls how many pages are saved at most.
+          If the limit is reached, the oldest pages are discarded.
+        </label>
+        </div>
+      </div>
+    </form>
+  <script src="settings.js"></script>
+  </body>
+</html>

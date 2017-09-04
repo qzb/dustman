@@ -1,0 +1,32 @@
+.form-group {
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+.short-label {
+  float: left;
+  width: 300px;
+}
+
+.long-label {
+  display: block;
+  color: rgb(70, 70, 70);
+  margin-left: 24px;
+}
+
+.error {
+  border-style: solid;
+  border-radius: 5px;
+  border-color: red;
+  box-shadow: 0 0 2px 0px red;
+}
+
+.success {
+  border-style: solid;
+  border-radius: 5px;
+  border-color: green;
+  box-shadow: 0 0 2px 0px green;
+}
+
+input[type='number'] {
+  width: 100px;
+}
