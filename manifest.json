@@ -11,9 +11,9 @@
 
   "background": {
     "scripts": [
-      "background/state.js",
-      "background/autoclose.js",
-      "background/main.js"
+      "lib/state.js",
+      "lib/autoclose.js",
+      "background.js"
     ]
   },
 

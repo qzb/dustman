@@ -36,7 +36,14 @@ initialState().then(state => {
     }
   })
 
-  browser.storage.onChanged.addListener(() => autoclose(state))
+  browser.storage.onChanged.addListener(changes => {
+    console.log("change", changes, state)
+    if ("settings" in changes) {
+      state.settings = changes.settings.newValue
+    }
+    console.log(state)
+    autoclose(state)
+  })
 
   return autoclose(state)
 })
