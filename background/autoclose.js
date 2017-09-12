@@ -1,13 +1,13 @@
 'use strict'
 
 /**
-  @typedef TabInfo
-  @type {object}
-  @property {integer} tabId
-  @property {integer} windowId
-  @property {number} inactiveMilliseconds - milliseconds since last activity in the tab
-  @property {boolean} pinned - whether the tab is pinned
-  @property {boolean} seen - whether the tab has been seen by the user at least once
+ * @typedef TabInfo
+ * @type {object}
+ * @property {integer} tabId
+ * @property {integer} windowId
+ * @property {number} inactiveMilliseconds - milliseconds since last activity in the tab
+ * @property {boolean} pinned - whether the tab is pinned
+ * @property {boolean} seen - whether the tab has been seen by the user at least once
  */
 
 /**

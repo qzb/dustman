@@ -1,16 +1,16 @@
 'use strict'
 
 /**
-  @typedef Settings
-  @type {object}
-  @property {number} maxInactiveMilliseconds
-  @property {integer} minTabsCount
-  @property {integer} maxHistorySize
+ * @typedef Settings
+ * @type {object}
+ * @property {number} maxInactiveMilliseconds
+ * @property {integer} minTabsCount
+ * @property {integer} maxHistorySize
  */
 
 const defaultSettings = {
   minInactiveMilliseconds: 10 * 60 * 1000, // 10 minutes
-  minTabsCount: 3,
+  minTabsCount: 7,
   maxHistorySize: 100
 }
 
@@ -23,14 +23,14 @@ const defaultSettings = {
  */
 
 /**
-  @typedef State
-  @type {object}
-  @property {Settings} settings
-  @property {integer} autocloseTimeoutId
-  @property {boolean} paused
-  @property {Array.<ClosedPageInfo>} closedPages
-  @property {Map.<integer, number>} lastAccessed - maps tab ids to their last access timestamp
-  @property {Map.<integer, integer>} activeTabs - maps window ids to the id of the active tab in their respective windows
+ * @typedef State
+ * @type {object}
+ * @property {Settings} settings
+ * @property {integer} autocloseTimeoutId
+ * @property {boolean} paused
+ * @property {Array.<ClosedPageInfo>} closedPages
+ * @property {Map.<integer, number>} lastAccessed - maps tab ids to their last access timestamp
+ * @property {Map.<integer, integer>} activeTabs - maps window ids to the id of the active tab in their respective windows
  */
 
 /**
