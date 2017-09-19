@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "Dustman",
+  "version": "2.0.1",
+
+  "description": "Auto-closes unused tabs",
+
+  "icons": {
+    "64": "icon.png"
+  },
+
+  "background": {
+    "scripts": [
+      "lib/state.js",
+      "lib/autoclose.js",
+      "background.js"
+    ]
+  },
+
+  "options_ui": {
+    "page": "settings/settings.html"
+  },
+
+  "browser_action": {
+    "browser_style": true,
+    "default_popup": "panel/panel.html",
+    "default_icon": {
+      "64": "icon.png"
+    }
+  },
+
+  "permissions": ["storage", "tabs"]
+}

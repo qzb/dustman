@@ -1,35 +1,7 @@
 {
-  "name": "dustman",
-  "title": "Dustman",
-  "id": "jid1-i37bkuPx3kABMw@jetpack",
-  "description": "Auto-closes unused tabs",
-  "author": "Józef Sokołowski",
-  "homepage": "https://github.com/qzb/dustman",
-  "license": "MIT",
-  "version": "1.2.1",
-  "main": "./lib/main.js",
-
-  "preferences": [{
-    "name": "maxInactivityTime",
-    "title": "Minimum inactivity time (minutes)",
-    "description": "Dustman closes only those tabs which haven't been active for specified period of time.",
-    "type": "integer",
-    "value": 20
-  }, {
-    "name": "minTabsCount",
-    "title": "Minimum number of tabs per window",
-    "description": "When window has less tabs than this value, Dustman will not close them. Pinned and unseen tabs (if enabled) are not counted in this limit.",
-    "type": "integer",
-    "value": 5
-  }, {
-    "name": "maxHistorySize",
-    "title": "Number of closed tabs showed in panel",
-    "type": "integer",
-    "value": 100
-  }, {
-    "name": "lockUnseenTabs",
-    "title": "Don't close tabs which were not viewed yet",
-    "type": "bool",
-    "value": true
-  }]
+  "devDependencies": [
+    "jsdoc",
+    "standard",
+    "web-ext"
+  ]
 }
