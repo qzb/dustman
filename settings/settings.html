@@ -27,20 +27,18 @@
         <p id="min-tabs-count-descr">
           Dustman closes tabs only in windows that have more than this many tabs.
           Pinned tabs are not counted towards this limit, and never auto-closed.
-          While Tabs that play sound (but not pinned) are counted towards this limit, they are also never auto-closed.
+          While unpinned Tabs that play sound are counted towards this limit, they are also never auto-closed.
         </p>
       </div>
 
       <div class="form-group">
-        <label for="max-history-size">
-          Number of closed tabs in the panel
+        <label for="save-closed-pages">
+          Save closed pages
         </label>
-        <input type="number" min="0" id="max-history-size" aria-describedby="max-histroy-size-descr" >
+        <input id="save-closed-pages" type="checkbox" >
         <p id="max-history-size-descr">
-          Dustman keeps a list of pages that were opened in the tabs it closes.
-          They can be accessed via the garbage bin button in the toolbar.
-          This option controls how many pages are saved at most.
-          If the limit is reached, the oldest pages are discarded.
+          If enabled, Dustman will maintain a list of pages it has closed.
+          The list can be accessed via the garbage bin button in the toolbar.
         </p>
       </div>
     </form>

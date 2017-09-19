@@ -6,9 +6,9 @@ function initializeMinInactiveMinutes (settings) {
   input.addEventListener('change', () => {
     const s = parseFloat(input.value)
     if (isNaN(s) || s < 0) {
-      input.setAttribute("aria-invalid", true)
+      input.setAttribute('aria-invalid', true)
     } else {
-      input.setAttribute("aria-invalid", false)
+      input.setAttribute('aria-invalid', false)
       settings.minInactiveMilliseconds = s * 1000 * 60
       saveSettings(settings)
     }
@@ -21,34 +21,28 @@ function initializeMinTabsCount (settings) {
   input.addEventListener('change', () => {
     const c = parseInt(input.value)
     if (isNaN(c) || c <= 0) {
-      input.setAttribute("aria-invalid", true)
+      input.setAttribute('aria-invalid', true)
     } else {
-      input.setAttribute("aria-invalid", false)
+      input.setAttribute('aria-invalid', false)
       settings.minTabsCount = c
       saveSettings(settings)
     }
   })
 }
 
-function initializeMaxHistorySize (settings) {
-  const input = document.getElementById('max-history-size')
-  input.value = settings.maxHistorySize
+function initializeSaveClosedPages (settings) {
+  const input = document.getElementById('save-closed-pages')
+  input.checked = settings.saveClosedPages
   input.addEventListener('change', () => {
-    const c = parseInt(input.value)
-    if (isNaN(c) || c < 0) {
-      input.setAttribute("aria-invalid", true)
-    } else {
-      input.setAttribute("aria-invalid", false)
-      settings.maxHistorySize = c
-      saveSettings(settings)
-    }
+    settings.saveClosedPages = input.checked
+    saveSettings(settings)
   })
 }
 
 function initializeSettingsUi (settings) {
   initializeMinInactiveMinutes(settings)
   initializeMinTabsCount(settings)
-  initializeMaxHistorySize(settings)
+  initializeSaveClosedPages(settings)
 }
 
 loadSettings().then(settings => initializeSettingsUi(settings))
