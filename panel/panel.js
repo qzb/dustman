@@ -54,6 +54,7 @@ function initializePauseButton (state) {
 
   button.addEventListener('click', () => {
     state.paused = !state.paused
+    bp.updateBrowserAction(state)
     bp.autoclose(state).then(() => {
       populateLinkList(state)
       if (state.paused) {

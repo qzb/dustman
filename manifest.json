@@ -13,6 +13,7 @@
     "scripts": [
       "lib/state.js",
       "lib/autoclose.js",
+      "lib/browseraction.js",
       "background.js"
     ]
   },

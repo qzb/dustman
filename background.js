@@ -1,17 +1,15 @@
 'use strict'
 
-function setupBrowserAction (state) {
-  if (state.settings.saveClosedPages === true) {
-    browser.browserAction.enable()
-  } else {
-    browser.browserAction.disable()
-  }
-}
-
 initialState().then(state => {
   // make the state available via the window of the background page
   window.state = state
-  setupBrowserAction(state)
+
+  browser.browserAction.onClicked.addListener(() => {
+    state.paused = !state.paused
+    updateBrowserAction(state)
+    autoclose(state)
+  })
+  updateBrowserAction(state)
 
   browser.tabs.onCreated.addListener(tab => {
     state.lastAccessed.set(tab.id, new Date().getTime())
@@ -51,7 +49,7 @@ initialState().then(state => {
     }
     autoclose(state)
 
-    setupBrowserAction(state)
+    updateBrowserAction(state)
     if (state.settings.saveClosedPages === false) {
       state.closedPages = []
     }
