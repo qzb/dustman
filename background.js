@@ -33,9 +33,13 @@ initialState().then(state => {
   browser.tabs.onRemoved.addListener(tabId => {
     state.lastAccessed.delete(tabId)
   })
-  browser.windows.onRemoved.addListener(windowId => {
-    state.activeTabs.delete(windowId)
-  })
+
+  if (browser.windows != null) {
+    browser.windows.onRemoved.addListener(windowId => {
+      state.activeTabs.delete(windowId)
+    })
+  }
+
   browser.tabs.query({windowType: 'normal'}).then(tabs => {
     const now = new Date().getTime()
     for (const tab of tabs) {
