@@ -30,19 +30,25 @@ function initializeMinTabsCount (settings) {
   })
 }
 
-function initializeSaveClosedPages (settings) {
-  const input = document.getElementById('save-closed-pages')
-  input.checked = settings.saveClosedPages
+function initializeMaxHistorySize (settings) {
+  const input = document.getElementById('max-history-size')
+  input.value = settings.maxHistorySize
   input.addEventListener('change', () => {
-    settings.saveClosedPages = input.checked
-    saveSettings(settings)
+    const c = parseInt(input.value)
+    if (isNaN(c) || c < 0) {
+      input.setAttribute('aria-invalid', true)
+    } else {
+      input.setAttribute('aria-invalid', false)
+      settings.maxHistorySize = c
+      saveSettings(settings)
+    }
   })
 }
 
 function initializeSettingsUi (settings) {
   initializeMinInactiveMinutes(settings)
   initializeMinTabsCount(settings)
-  initializeSaveClosedPages(settings)
+  initializeMaxHistorySize(settings)
 }
 
 loadSettings().then(settings => initializeSettingsUi(settings))

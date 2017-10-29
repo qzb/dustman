@@ -36,6 +36,11 @@ function populateLinkList (state) {
 
   for (let closedPage of state.closedPages) {
     const link = makeLink(closedPage)
+    link.addEventListener('click', event => {
+      const i = state.closedPages.indexOf(closedPage)
+      state.closedPages.splice(i, 1)
+      linkList.removeChild(link)
+    })
     linkList.appendChild(link)
   }
 }
