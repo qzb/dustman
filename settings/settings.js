@@ -10,7 +10,7 @@ function initializeMinInactiveMinutes (settings) {
     } else {
       input.setAttribute('aria-invalid', false)
       settings.minInactiveMilliseconds = s * 1000 * 60
-      saveSettings(settings)
+      persistSettings(settings)
     }
   })
 }
@@ -25,7 +25,7 @@ function initializeMinTabsCount (settings) {
     } else {
       input.setAttribute('aria-invalid', false)
       settings.minTabsCount = c
-      saveSettings(settings)
+      persistSettings(settings)
     }
   })
 }
@@ -40,8 +40,17 @@ function initializeMaxHistorySize (settings) {
     } else {
       input.setAttribute('aria-invalid', false)
       settings.maxHistorySize = c
-      saveSettings(settings)
+      persistSettings(settings)
     }
+  })
+}
+
+function initializeClearHistoryOnExit (settings) {
+  const input = document.getElementById('clear-history-on-exit')
+  input.checked = settings.clearHistoryOnExit
+  input.addEventListener('change', () => {
+    settings.clearHistoryOnExit = input.checked
+    persistSettings(settings)
   })
 }
 
@@ -49,6 +58,7 @@ function initializeSettingsUi (settings) {
   initializeMinInactiveMinutes(settings)
   initializeMinTabsCount(settings)
   initializeMaxHistorySize(settings)
+  initializeClearHistoryOnExit(settings)
 }
 
-loadSettings().then(settings => initializeSettingsUi(settings))
+loadState().then(state => initializeSettingsUi(state.settings))

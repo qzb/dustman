@@ -34,11 +34,14 @@ function populateLinkList (state) {
     linkList.removeChild(linkList.lastChild)
   }
 
-  for (let closedPage of state.closedPages) {
+  for (let closedPage of state.history) {
     const link = makeLink(closedPage)
     link.addEventListener('click', event => {
-      const i = state.closedPages.indexOf(closedPage)
-      state.closedPages.splice(i, 1)
+      const i = state.history.indexOf(closedPage)
+      state.history.splice(i, 1)
+      if (state.settings.clearHistoryOnExit === false) {
+        persistHistory(state)
+      }
       linkList.removeChild(link)
     })
     linkList.appendChild(link)

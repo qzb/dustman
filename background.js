@@ -1,6 +1,6 @@
 'use strict'
 
-initialState().then(state => {
+loadState().then(state => {
   // make the state available via the window of the background page
   window.state = state
 
@@ -22,14 +22,15 @@ initialState().then(state => {
   })
 
   browser.storage.onChanged.addListener(changes => {
-    for (const key in changes) {
-      state[key] = changes[key].newValue
-    }
-    autoclose(state)
+    if ('settings' in changes) {
+      state.settings = changes.settings.newValue
 
-    updateBrowserAction(state)
-    if (state.settings.saveClosedPages === false) {
-      state.closedPages = []
+      updateBrowserAction(state)
+
+      state.history = state.history.slice(0, state.settings.maxHistorySize)
+      persistHistory(state)
+
+      autoclose(state)
     }
   })
 
