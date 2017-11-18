@@ -1,0 +1,26 @@
+{
+  "locale": {
+    "message": "zh_CN",
+    "description": "A variant of the IETF language tag of this locale, e.g. 'en_US' for American English (not 'en-US', i.e. with an underscore _ instead of a minus -)."
+  },
+  "extensionName": {
+    "message": "Dustman",
+    "description": "The name of the extension."
+  },
+  "extensionDescription": {
+    "message": "自动关闭未使用的标签页",
+    "description": "The description of the extension, e.g. on the addon page."
+  },
+  "buttonTooltip": {
+    "message": "Dustman",
+    "description": "The tooltip of the dustman button when auto-closing is not paused."
+  },
+  "buttonTooltipPaused": {
+    "message": "Dustman （已暂停）",
+    "description": "The tooltip of the dustman button when auto-closing is paused."
+  },
+  "buttonBadgePaused": {
+    "message": "🚫",
+    "description": "The symbol over the dustman button when auto-closing is paused."
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dustman 设置</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../settings.css" rel="stylesheet">
+  </head>
+  <body>
+    <form>
+      <div class="form-group">
+        <label for="min-inactive-minutes">
+          最小后台关闭时间（分钟）
+        </label>
+        <input type="number" step="any" min="0" id="min-inactive-minutes" aria-describedby="min-inactive-minutes-descr" >
+        <p id="min-inactive-minutes-descr">
+          Dustman 仅关闭在后台存留多于这一时长的标签页。
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="min-tabs-count">
+          窗口标签页数量下限
+        </label>
+        <input type="number" min="1" id="min-tabs-count" aria-describedby="min-tabs-count-descr" >
+        <p id="min-tabs-count-descr">
+          Dustman 仅处理多于这一数量的标签页的窗口。
+          固定的标签页不计数，不会自动关闭。
+          非固定正在播放声音的标签页会计数，但是不会自动关闭。
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="max-history-size">
+          已保存的标签页数量
+        </label>
+        <input type="number" min="0" id="max-history-size" aria-describedby="max-history-size-descr" >
+        <p id="max-history-size-descr">
+          Dustman 可以保存已关闭的标签页。
+          通过工具栏按钮访问保存的标签页列表。
+          设置为 0 即禁用保存列表。
+        </p>
+      </div>
+
+      <div class="form-group">
+        <label for="clear-history-on-exit">
+          Firefox 退出时清除已保存的标签页
+        </label>
+        <input type="checkbox" id="clear-history-on-exit" >
+      </div>
+    </form>
+    <script src="../../lib/state.js"></script>
+    <script src="../settings.js"></script>
+  </body>
+</html>
