@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Dustman",
+  "name": "__MSG_extensionName__",
   "version": "2.0.5",
 
-  "description": "Auto-closes unused tabs",
+  "description": "__MSG_extensionDescription__",
 
   "icons": {
     "64": "icon.png"
@@ -19,16 +19,19 @@
   },
 
   "options_ui": {
-    "page": "settings/settings.html"
+    "page": "settings/index.html"
   },
 
   "browser_action": {
     "browser_style": true,
-    "default_popup": "panel/panel.html",
+    "default_popup": "panel/index.html",
+    "default_title": "__MSG_buttonTooltip__",
     "default_icon": {
       "64": "icon.png"
     }
   },
 
-  "permissions": ["storage", "tabs"]
+  "permissions": ["storage", "tabs"],
+
+  "default_locale": "en_US"
 }

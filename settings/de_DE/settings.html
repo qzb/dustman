@@ -3,54 +3,54 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Dustman Settings</title>
+    <title>Dustman Einstellungen</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="settings.css" rel="stylesheet">
+    <link href="../settings.css" rel="stylesheet">
   </head>
   <body>
     <form>
       <div class="form-group">
         <label for="min-inactive-minutes">
-          Minimum background time (in minutes)
+          Mindestzeit im Hintergrund (in Minuten)
         </label>
         <input type="number" step="any" min="0" id="min-inactive-minutes" aria-describedby="min-inactive-minutes-descr" >
         <p id="min-inactive-minutes-descr">
-          Dustman only closes tabs which have been in the background for this long.
+          Dustman schließt Tabs nur, wenn sie mindestens so lange im Hintergrund waren.
         </p>
       </div>
 
       <div class="form-group">
         <label for="min-tabs-count">
-          Minimum number of tabs per window
+          Mindestanzahl Tabs pro Fenster
         </label>
         <input type="number" min="1" id="min-tabs-count" aria-describedby="min-tabs-count-descr" >
         <p id="min-tabs-count-descr">
-          Dustman closes tabs only in windows that have more than this many tabs.
-          Pinned tabs are not counted towards this limit, and never auto-closed.
-          While unpinned Tabs that play sound are counted towards this limit, they are also never auto-closed.
+          Dustman schließt Tabs nur in Fenstern, in denen mehr als so viele Tabs geöffnet sind.
+          Angeheftete Tabs werden nicht mitgezählt, und auch nicht automatisch geschlossen.
+          Nicht angeheftete Tabs, die Ton abspielen, werden zwar mitgezählt, aber ebenfalls nicht automatisch geschlossen.
         </p>
       </div>
 
       <div class="form-group">
         <label for="max-history-size">
-          Number of saved tabs
+          Anzahl gespeicherter Tabs
         </label>
         <input type="number" min="0" id="max-history-size" aria-describedby="max-history-size-descr" >
         <p id="max-history-size-descr">
-          Dustman can save a number of tabs it has closed.
-          The list can be accessed via the garbage bin button in the toolbar.
-          Set to 0 to disable saving tabs altogether.
+          Dustman kann sich automatisch geschlossene Tabs merken.
+          Die Liste ist über den Abfalleimer in der Symbolleiste erreichbar.
+          Auf 0 setzen deaktiviert das Speichern von geschlossenen Tabs.
         </p>
       </div>
 
       <div class="form-group">
         <label for="clear-history-on-exit">
-          Clear saved tabs when firefox closes
+          Gespeicherte Tabs löschen, wenn Firefox beendet wird
         </label>
         <input type="checkbox" id="clear-history-on-exit" >
       </div>
     </form>
-    <script src="../lib/state.js"></script>
-    <script src="settings.js"></script>
+    <script src="../../lib/state.js"></script>
+    <script src="../settings.js"></script>
   </body>
 </html>
